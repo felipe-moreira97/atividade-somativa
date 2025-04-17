@@ -22,17 +22,17 @@ function App() {
     }
   }
 
-  const handleReset = e => {
+  const handleReset = () => {
     setIsError(false)
     setMessage("")
   }
-  
+
 
   return (
     <div className="App">
-      <form 
-        className='form' 
-        onSubmit={handleSubmit} 
+      <form
+        className='form'
+        onSubmit={handleSubmit}
         noValidate
         onReset={handleReset}
       >
@@ -43,10 +43,10 @@ function App() {
         </div>
         <div className='input-container'>
           <label htmlFor="password">Senha</label>
-        <input type='password' name='password' id='password' placeholder='Digite sua senha' />
-       {message && <p className={`message ${isError && "message-error"}`}>{message}</p>}
+          <input type='password' name='password' id='password' placeholder='Digite sua senha' />
+          {message && <p className={`message ${isError && "message-error"}`}>{message}</p>}
         </div>
-        <div className='input-buttons-container'>  
+        <div className='input-buttons-container'>
           <button type='reset'>
             Redefinir
           </button>
