@@ -24,6 +24,11 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run build
+      - name: Discord Webhook Action
+        uses: tsickert/discord-webhook@v7.0.0
+        with:
+          webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          content: "Test"
   delivery:
     runs-on: ubuntu-latest
     needs: build
