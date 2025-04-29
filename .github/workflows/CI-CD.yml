@@ -28,7 +28,7 @@ jobs:
         uses: tsickert/discord-webhook@v7.0.0
         with:
           webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          content: "Test"
+          content: "Seu Deploy foi realizado com sucesso!"
   delivery:
     runs-on: ubuntu-latest
     needs: build
