@@ -11,9 +11,9 @@ function App() {
 
   const handleSubmit = e => {
     e.preventDefault()
-    const email = e.target[0].value
-    const password = e.target[1].value
-    if (email === validEmail && password === validPassword) {
+    const { email, password } = e.target.elements
+
+    if (email.value === validEmail && password.value === validPassword) {
       setMessage("Acessado com sucesso!")
       setIsError(false)
     } else {
@@ -27,7 +27,6 @@ function App() {
     setMessage("")
   }
 
-
   return (
     <div className="App">
       <form
@@ -39,11 +38,21 @@ function App() {
         <h1 className='form-title'>Login</h1>
         <div className='input-container'>
           <label htmlFor="email">Email</label>
-          <input type='email' name='email' id='email' placeholder='Digite seu e-mail' />
+          <input
+            type='email'
+            name='email'
+            id='email'
+            placeholder='Digite seu e-mail'
+          />
         </div>
         <div className='input-container'>
           <label htmlFor="password">Senha</label>
-          <input type='password' name='password' id='password' placeholder='Digite sua senha' />
+          <input
+            type='password'
+            name='password'
+            id='password'
+            placeholder='Digite sua senha'
+          />
           {message && <p className={`message ${isError && "message-error"}`}>{message}</p>}
         </div>
         <div className='input-buttons-container'>
