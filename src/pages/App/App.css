@@ -1,0 +1,14 @@
+.App {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input,
+button {
+  padding: 8px;
+  border: 1px solid grey;
+  border-radius: 8px;
+  background-color: white;
+}
