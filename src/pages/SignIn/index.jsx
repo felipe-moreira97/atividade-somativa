@@ -1,24 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Link, useNavigate } from 'react-router'
 import './style.css'
+import { signIn } from '../../utils/db';
+import authContext from '../../contexts/authContext';
 
-const validEmail = "eduardo.lino@pucpr.br"
-const validPassword = "123456"
-
-export default function LoginForm() {
+export default function SignIn() {
     const [message, setMessage] = React.useState("")
     const [isError, setIsError] = React.useState(false)
+    const { setUser } = useContext(authContext)
+    const navigate = useNavigate()
 
     const handleSubmit = e => {
         e.preventDefault()
-        const { email, password } = e.target.elements
-
-        if (email.value === validEmail && password.value === validPassword) {
-            setMessage("Acessado com sucesso!")
-            setIsError(false)
-        } else {
-            setMessage("Usuário ou senha incorretos!")
-            setIsError(true)
-        }
+        const { email: { value: email }, password: { value: password } } = e.target.elements
+        signIn(email, password)
+            .then(user => {
+                setUser(user)
+                navigate("/")
+            })
+            .catch(() => {
+                setMessage("Usuário ou senha incorretos!")
+                setIsError(true)
+            })
     }
 
     const handleReset = () => {
@@ -52,6 +55,7 @@ export default function LoginForm() {
                     placeholder='Digite sua senha'
                 />
                 {message && <p className={`message ${isError && "message-error"}`}>{message}</p>}
+                <p className='description'>Não tem uma conta? <Link to="/sign-up">Clique aqui</Link></p>
             </div>
             <div className='input-buttons-container'>
                 <button type='reset'>
